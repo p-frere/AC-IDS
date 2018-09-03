@@ -2,16 +2,9 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include <pthread.h>
-
-#define clear() printf("\033[H\033[J")
-#define consoleGoto(x,y) printf("\033[%d;%dH", (x), (y))
-#define consoleGotoX(x) printf("\033[%dC", (x)); 
-
-int consolePrint(char* string){
-    consoleGotoX(15);
-    printf("%s\n", string);
-    return 4;
-}
+#include "portScan.h"
+#include "watchFile.h"
+#include "consoleUtilities.h"
 
 //Returns menu selection
 int menu(){   
@@ -40,17 +33,18 @@ int main(){
     printf("\n");
 
     consolePrint("╔══════════════════════════════════╗");
-    consolePrint("║ 0. Start Scan & Detection        ║");
-    consolePrint("║ 1. Test attack commands          ║");
+    consolePrint("║ 0. Network Threat Detection      ║");
+    consolePrint("║ 1. File Modification Detection   ║");
     consolePrint("║ 2. Log files                     ║");
     consolePrint("║ 3. Quit                          ║");
     consolePrint("╚══════════════════════════════════╝");
 
     switch (menu()){
         case 0:
-            printf("Starting scan...\n");
+            portScan();
             break;
         case 1:
+            prepareWatch();
             break;
         case 2:
             break;
@@ -60,6 +54,5 @@ int main(){
             printf("Quitting...\n");
             break;
     }
-    
 }
 

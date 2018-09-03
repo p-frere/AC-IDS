@@ -12,13 +12,9 @@ add_executable(acids
         log.txt
         menu.c
         portScan.c
-        processScan.c
-        queueScan.c
-        queueScan.h
-        queuetest.c
         sts_queue.c
         sts_queue.h
-        test.c)
+        portScan.h watchFile.c watchFile.h detected.c detected.h consoleUtilities.c consoleUtilities.h)
 
 include(FindPkgConfig)
 find_package(Pcap REQUIRED)
